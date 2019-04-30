@@ -109,11 +109,11 @@ export default {
                                console.log("this is the winner",winner);
                             }
                             else{
-                                if(aswholewinner.replace(/[{()}]/g, '').replace(/[0-9]/g, '').replace("+","").replace("-","") !==
-                                winner.replace(/[{()}]/g, '').replace(/[0-9]/g, '').replace("+","").replace("-","")){
-                                    onentwo[minimum]["blue"]= "red";
-                                }
+                              if(!aswholewinner.replace(/[{()}]/g, '').replace(/[0-9]/g, '').replace("+","").replace("-","")
+                                .includes(winner.replace(/[{()}]/g, '').replace(/[0-9]/g, '').replace("+","").replace("-",""))){
+                                onentwo[minimum]["blue"]= "red";
                             }
+                       }
                        }
                        console.log("this is the ionindex", ioneindex, winner);
                        ioneindex =ioneindex +3;
