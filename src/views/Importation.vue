@@ -1,7 +1,7 @@
 <template>
   <div class="parse">
-    <h1>Parse CSV to JSON</h1>
-    <v-btn color="primary" round outline @click="$refs.file.click()">Choose File ({{label}})</v-btn>
+    <h1>Importer votre fichier .CSV</h1>
+    <v-btn color="primary" round outline @click="$refs.file.click()">Choisir un fichier ({{label}})</v-btn>
     <input
       class="hidden"
       accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
@@ -30,7 +30,7 @@
       <div class="body">
         <div class="entry">
           <v-treeview v-if="doc" :items="items"></v-treeview>
-          <div v-else>No Data kindly import!</div>
+          <div v-else>Aucun fichier chargé !</div>
         </div>
       </div>
     </v-container>
