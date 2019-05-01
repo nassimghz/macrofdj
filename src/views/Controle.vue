@@ -109,11 +109,13 @@ export default {
                                console.log("this is the winner",winner);
                             }
                             else{
-                              if(!aswholewinner.replace(/[{()}]/g, '').replace(/[0-9]/g, '').replace("+","").replace("-","")
-                                .includes(winner.replace(/[{()}]/g, '').replace(/[0-9]/g, '').replace("+","").replace("-",""))){
-                                onentwo[minimum]["blue"]= "red";
+                                if(!aswholewinner.replace(/[{()}]/g, '').replace(/[0-9]/g, '').replace("+","").replace("-","").includes(
+                                                                winner.replace(/[{()}]/g, '').replace(/[0-9]/g, '').replace("+","").replace("-","")
+                                )
+){
+                                    onentwo[minimum]["blue"]= "red";
+                                }
                             }
-                       }
                        }
                        console.log("this is the ionindex", ioneindex, winner);
                        ioneindex =ioneindex +3;
@@ -128,20 +130,53 @@ export default {
 
             //handicaps
                     var index=0;
+                      var valuetocheck=0;
                     while(index  <= handicap.length -4){
 
-                        if(parseFloat(handicap[index]["Cotes Première"].replace(",",".")) < parseFloat(handicap[index+3]["Cotes Première"].replace(",","."))){
-                                            handicap[index+3]["blue"]= "red";
-                                    }
+
+                    if(index<3){
+                         valuetocheck=   handicap[index]["Cotes Première"].replace(",",".");
+                    }
+                    if(index >=3){
+                            if(handicap[index]["Evénement"] !== handicap[index-1]["Evénement"] ){
+                                valuetocheck =handicap[index]["Cotes Première"].replace(",",".");
+                            }
+                            else{
+                            if(parseFloat(valuetocheck) < parseFloat(handicap[index]["Cotes Première"].replace(",","."))){
+                               handicap[index]["blue"]= "red";
+                                console.log("this is ierro hand",valuetocheck, handicap[index+2]["Cotes Première"].replace(",","."));
+                               }
+                                console.log("this is ierro hand",valuetocheck, handicap[index+2]["Cotes Première"].replace(",","."));
+                                  valuetocheck=   handicap[index]["Cotes Première"].replace(",",".");
+                            }
+                    }
                         index=index+3;
                     }
-                   var indexi=2;
-                        while(indexi  <= handicap.length -4){
-                            if(parseFloat(handicap[indexi]["Cotes Première"].replace(",",".")) > parseFloat(handicap[indexi+3]["Cotes Première"].replace(",","."))){
-                                               handicap[indexi+3]["blue"]= "red";
-                                        }
-                            indexi=indexi+3;
-                   }
+                   var indexi=0;
+                     var valuetochecki=0;
+                       while(indexi  <= handicap.length -4){
+
+
+                                          if(indexi<3){
+                                               valuetochecki=handicap[indexi+2]["Cotes Première"].replace(",",".");
+                                                console.log("this is <3",valuetochecki);
+                                          }
+                                          if(indexi >=3){
+                                                  if(handicap[indexi]["Evénement"] !== handicap[indexi-1]["Evénement"] ){
+                                                      valuetochecki =handicap[indexi+2]["Cotes Première"].replace(",",".");
+                                                       console.log("this is >3",valuetochecki, indexi);
+                                                  }
+                                                  else{
+                                                  if(parseFloat(valuetochecki) > parseFloat(handicap[indexi+2]["Cotes Première"].replace(",","."))){
+                                                     console.log("this is ierro",valuetochecki, handicap[indexi+2]["Cotes Première"].replace(",","."));
+                                                     handicap[indexi+2]["blue"]= "red";
+                                                     }
+                                                      console.log("this is ierro",valuetochecki, handicap[indexi+2]["Cotes Première"].replace(",","."));
+                                                       valuetochecki=handicap[indexi+2]["Cotes Première"].replace(",",".");
+                                                  }
+                                          }
+                                              indexi=indexi+3;
+                                          } 
                    var self=this;
                 handicap.map((item)=>{
                             if(item["blue"] === "red"){
