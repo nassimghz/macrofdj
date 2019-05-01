@@ -21,7 +21,7 @@
       </div>
       <div v-else>
         Aucun fichier, rendez vous sur la page 
-        <router-link to="/importation">importation</router-link>et charger un fichier .csv !
+        <router-link to="/importation">importation</router-link>et charger un fichier .csv
       </div>
     </v-app>
   </div>
@@ -39,16 +39,16 @@ export default {
        },
    methods:{
            min: function(val1, val2, val3, index1, index2, index3){
-              if(parseFloat(val1["Cotes Dernière"].replace(",",".")) <= parseFloat(val2["Cotes Dernière"].replace(",","."))
-               && parseFloat(val1["Cotes Dernière"].replace(",",".")) <= parseFloat(val3["Cotes Dernière"].replace(",","."))){
+              if(parseFloat(val1["Cotes Première"].replace(",",".")) <= parseFloat(val2["Cotes Première"].replace(",","."))
+               && parseFloat(val1["Cotes Première"].replace(",",".")) <= parseFloat(val3["Cotes Première"].replace(",","."))){
                     return index1;
                 }
-             else if(parseFloat(val2["Cotes Dernière"].replace(",",".")) <= parseFloat(val1["Cotes Dernière"].replace(",","."))
-             && parseFloat(val2["Cotes Dernière"].replace(",",".")) <= parseFloat(val3["Cotes Dernière"].replace(",","."))){
+             else if(parseFloat(val2["Cotes Première"].replace(",",".")) <= parseFloat(val1["Cotes Première"].replace(",","."))
+             && parseFloat(val2["Cotes Première"].replace(",",".")) <= parseFloat(val3["Cotes Première"].replace(",","."))){
                     return index2;
                 }
-              else if( parseFloat(val3["Cotes Dernière"].replace(",",".")) <= parseFloat(val1["Cotes Dernière"].replace(",","."))
-               && parseFloat(val3["Cotes Dernière"].replace(",",".")) <= parseFloat(val2["Cotes Dernière"].replace(",","."))){
+              else if( parseFloat(val3["Cotes Première"].replace(",",".")) <= parseFloat(val1["Cotes Première"].replace(",","."))
+               && parseFloat(val3["Cotes Première"].replace(",",".")) <= parseFloat(val2["Cotes Première"].replace(",","."))){
                     return index3;
                 }
                }
@@ -92,7 +92,7 @@ export default {
 
                        var minimum = this.min(onentwo[ioneindex],
                        onentwo[ioneindex+1],onentwo[ioneindex+2],ioneindex,ioneindex+1,ioneindex+2);
-                       console.log("this is ok",minimum,onentwo[ioneindex+2]["Cotes Dernière"]);
+                       console.log("this is ok",minimum,onentwo[ioneindex+2]["Cotes Première"]);
 
                        if(ioneindex <3){
                        aswholewinner=onentwo[minimum]["Paris/Pronostics"].replace(/[{()}]/g, '').replace(/[0-9]/g, '').replace("+","").replace("-","");;
@@ -135,19 +135,19 @@ export default {
 
 
                     if(index<3){
-                         valuetocheck=   handicap[index]["Cotes Dernière"].replace(",",".");
+                         valuetocheck=   handicap[index]["Cotes Première"].replace(",",".");
                     }
                     if(index >=3){
                             if(handicap[index]["Evénement"] !== handicap[index-1]["Evénement"] ){
-                                valuetocheck =handicap[index]["Cotes Dernière"].replace(",",".");
+                                valuetocheck =handicap[index]["Cotes Première"].replace(",",".");
                             }
                             else{
-                            if(parseFloat(valuetocheck) < parseFloat(handicap[index]["Cotes Dernière"].replace(",","."))){
+                            if(parseFloat(valuetocheck) < parseFloat(handicap[index]["Cotes Première"].replace(",","."))){
                                handicap[index]["blue"]= "red";
-                                console.log("this is ierro hand",valuetocheck, handicap[index+2]["Cotes Dernière"].replace(",","."));
+                                console.log("this is ierro hand",valuetocheck, handicap[index+2]["Cotes Première"].replace(",","."));
                                }
-                                console.log("this is ierro hand",valuetocheck, handicap[index+2]["Cotes Dernière"].replace(",","."));
-                                  valuetocheck=   handicap[index]["Cotes Dernière"].replace(",",".");
+                                console.log("this is ierro hand",valuetocheck, handicap[index+2]["Cotes Première"].replace(",","."));
+                                  valuetocheck=   handicap[index]["Cotes Première"].replace(",",".");
                             }
                     }
                         index=index+3;
@@ -158,21 +158,21 @@ export default {
 
 
                                           if(indexi<3){
-                                               valuetochecki=handicap[indexi+2]["Cotes Dernière"].replace(",",".");
+                                               valuetochecki=handicap[indexi+2]["Cotes Première"].replace(",",".");
                                                 console.log("this is <3",valuetochecki);
                                           }
                                           if(indexi >=3){
                                                   if(handicap[indexi]["Evénement"] !== handicap[indexi-1]["Evénement"] ){
-                                                      valuetochecki =handicap[indexi+2]["Cotes Dernière"].replace(",",".");
+                                                      valuetochecki =handicap[indexi+2]["Cotes Première"].replace(",",".");
                                                        console.log("this is >3",valuetochecki, indexi);
                                                   }
                                                   else{
-                                                  if(parseFloat(valuetochecki) > parseFloat(handicap[indexi+2]["Cotes Dernière"].replace(",","."))){
-                                                     console.log("this is ierro",valuetochecki, handicap[indexi+2]["Cotes Dernière"].replace(",","."));
+                                                  if(parseFloat(valuetochecki) > parseFloat(handicap[indexi+2]["Cotes Première"].replace(",","."))){
+                                                     console.log("this is ierro",valuetochecki, handicap[indexi+2]["Cotes Première"].replace(",","."));
                                                      handicap[indexi+2]["blue"]= "red";
                                                      }
-                                                      console.log("this is ierro",valuetochecki, handicap[indexi+2]["Cotes Dernière"].replace(",","."));
-                                                       valuetochecki=handicap[indexi+2]["Cotes Dernière"].replace(",",".");
+                                                      console.log("this is ierro",valuetochecki, handicap[indexi+2]["Cotes Première"].replace(",","."));
+                                                       valuetochecki=handicap[indexi+2]["Cotes Première"].replace(",",".");
                                                   }
                                           }
                                               indexi=indexi+3;
