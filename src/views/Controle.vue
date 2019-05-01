@@ -176,7 +176,7 @@ export default {
                                                   }
                                           }
                                               indexi=indexi+3;
-                                          } 
+                                          }     
                    var self=this;
                 handicap.map((item)=>{
                             if(item["blue"] === "red"){
